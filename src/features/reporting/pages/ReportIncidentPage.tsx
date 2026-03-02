@@ -105,9 +105,16 @@ const ReportIncidentPage: React.FC = () => {
             select
             fullWidth
           >
-            <MenuItem value="Disruption">Disruption</MenuItem>
             <MenuItem value="Physical">Physical</MenuItem>
+            <MenuItem value="Verbal">Verbal</MenuItem>
+            <MenuItem value="Disruption">Disruption</MenuItem>
             <MenuItem value="Bullying">Bullying</MenuItem>
+            <MenuItem value="Damage">Damage</MenuItem>
+            <MenuItem value="Cheating">Cheating</MenuItem>
+            <MenuItem value="Disrespect">Disrespect</MenuItem>
+            <MenuItem value="Absenteeism">Absenteeism</MenuItem>
+            <MenuItem value="Theft">Theft</MenuItem>
+            <MenuItem value="Cyberbullying">Cyberbullying</MenuItem>
           </TextField>
 
           <TextField

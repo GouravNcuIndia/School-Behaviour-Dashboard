@@ -15,7 +15,7 @@ const DashboardPage: React.FC = () => {
       {/* Header */}
       <Box mb={4}>
         <Typography variant="h3" component="h1" gutterBottom fontWeight="500">
-          Student Behaviour Smart
+          Student Incident & Behaviour System
         </Typography>
         <Typography variant="subtitle1" color="text.secondary">
           Student Behaviour Analysis

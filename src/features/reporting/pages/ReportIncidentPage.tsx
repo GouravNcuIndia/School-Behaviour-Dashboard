@@ -12,14 +12,14 @@ import {
   Alert,
 } from "@mui/material";
 import { supabase } from "../../../lib/supabase";
-import { IncidentInsert } from "../types/incident.types.ts";
+// import { IncidentInsert } from "../types/incident.types";
 
 const ReportIncidentPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const [formData, setFormData] = useState<IncidentInsert>({
+  const [formData, setFormData] = useState<any>({
     incident_student: "",
     incident_type: "",
     incident_clicker: "Manual",
@@ -44,13 +44,12 @@ const ReportIncidentPage: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
 
   const handleSwitch =
-    (name: keyof IncidentInsert) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setFormData((prev) => ({ ...prev, [name]: e.target.checked }));
+    (name: keyof any) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData((prev: any) => ({ ...prev, [name]: e.target.checked }));
     };
 
   const handleSubmit = async () => {

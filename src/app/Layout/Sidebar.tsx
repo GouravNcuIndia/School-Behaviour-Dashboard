@@ -40,6 +40,8 @@ export default function Sidebar() {
         width: drawerWidth,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
+          marginTop: "30px",
+          marginLeft: "60px",
           width: drawerWidth,
           boxSizing: "border-box",
           bgcolor: "primary.main",

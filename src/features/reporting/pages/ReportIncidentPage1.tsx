@@ -1,0 +1,210 @@
+import React, { useState } from "react";
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  MenuItem,
+  Switch,
+  FormControlLabel,
+  Paper,
+  Alert,
+} from "@mui/material";
+import { supabase } from "../../../lib/supabase";
+// import { IncidentInsert } from "../types/incident.types";
+
+const ReportIncidentPage: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  const [formData, setFormData] = useState<any>({
+    incident_student: "",
+    incident_type: "",
+    incident_clicker: "Manual",
+    incident_record: "REC_AUTO",
+    incident_date: "",
+    incident_time: "",
+    incident_location: "",
+    incident_witnesses: "",
+    students_involved: "",
+    staff_involved: "",
+    report_completer: "",
+    injury_status: false,
+    your_action: false,
+    reason_action: "",
+    incident_description: "",
+    c1: "Level1",
+    c2: "Term1",
+    c3: "Open",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev: any) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSwitch =
+    (name: keyof any) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData((prev: any) => ({ ...prev, [name]: e.target.checked }));
+    };
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    const { error } = await supabase.from("incident_table").insert([formData]);
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setSuccess(true);
+      setFormData({
+        ...formData,
+        incident_student: "",
+        incident_type: "",
+        incident_date: "",
+        incident_time: "",
+        incident_location: "",
+        incident_witnesses: "",
+        students_involved: "",
+        staff_involved: "",
+        report_completer: "",
+        incident_description: "",
+      });
+    }
+
+    setLoading(false);
+  };
+
+  return (
+    <Container maxWidth="md" sx={{ mt: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Report Incident
+      </Typography>
+
+      <Paper sx={{ p: 4 }}>
+        <Box display="flex" flexDirection="column" gap={2}>
+          <TextField
+            label="Student Name"
+            name="incident_student"
+            value={formData.incident_student}
+            onChange={handleChange}
+            fullWidth
+          />
+
+          <TextField
+            label="Incident Type"
+            name="incident_type"
+            value={formData.incident_type}
+            onChange={handleChange}
+            select
+            fullWidth
+          >
+            <MenuItem value="Physical">Physical</MenuItem>
+            <MenuItem value="Verbal">Verbal</MenuItem>
+            <MenuItem value="Disruption">Disruption</MenuItem>
+            <MenuItem value="Bullying">Bullying</MenuItem>
+            <MenuItem value="Damage">Damage</MenuItem>
+            <MenuItem value="Cheating">Cheating</MenuItem>
+            <MenuItem value="Disrespect">Disrespect</MenuItem>
+            <MenuItem value="Absenteeism">Absenteeism</MenuItem>
+            <MenuItem value="Theft">Theft</MenuItem>
+            <MenuItem value="Cyberbullying">Cyberbullying</MenuItem>
+          </TextField>
+
+          <TextField
+            label="Incident Date"
+            name="incident_date"
+            type="date"
+            InputLabelProps={{ shrink: true }}
+            value={formData.incident_date}
+            onChange={handleChange}
+          />
+
+          <TextField
+            label="Incident Time"
+            name="incident_time"
+            type="time"
+            InputLabelProps={{ shrink: true }}
+            value={formData.incident_time}
+            onChange={handleChange}
+          />
+
+          <TextField
+            label="Location"
+            name="incident_location"
+            value={formData.incident_location}
+            onChange={handleChange}
+            select
+            fullWidth
+          >
+            <MenuItem value="Playground">Playground</MenuItem>
+            <MenuItem value="Science Lab">Science Lab</MenuItem>
+            <MenuItem value="Hallway">Hallway</MenuItem>
+            <MenuItem value="Cafeteria">Cafeteria</MenuItem>
+            <MenuItem value="Administration">Administration</MenuItem>
+            <MenuItem value="Library">Library</MenuItem>
+            <MenuItem value="Exam Hall">Exam Hall</MenuItem>
+            <MenuItem value="Playground">Playground</MenuItem>
+            <MenuItem value="Gym">Gym</MenuItem>
+            <MenuItem value="Music Room">Music Room</MenuItem>
+            <MenuItem value="Locker Area">Locker Area</MenuItem>
+            <MenuItem value="Computer Lab">Computer Lab</MenuItem>
+            <MenuItem value="Art Room">Art Room</MenuItem>
+            <MenuItem value="Classroom">Classroom</MenuItem>
+          </TextField>
+
+          <TextField
+            label="Description"
+            name="incident_description"
+            multiline
+            rows={4}
+            value={formData.incident_description}
+            onChange={handleChange}
+          />
+
+          <FormControlLabel
+            control={
+              <Switch
+                checked={formData.injury_status}
+                onChange={handleSwitch("injury_status")}
+              />
+            }
+            label="Does the incident involve an injury?"
+          />
+
+          <FormControlLabel
+            control={
+              <Switch
+                checked={formData.your_action}
+                onChange={handleSwitch("your_action")}
+              />
+            }
+            label="Did you take action?"
+          />
+
+          <TextField
+            label="Action Reason"
+            name="reason_action"
+            value={formData.reason_action}
+            onChange={handleChange}
+          />
+
+          {error && <Alert severity="error">{error}</Alert>}
+          {success && <Alert severity="success">Incident Submitted</Alert>}
+
+          <Button variant="contained" onClick={handleSubmit} disabled={loading}>
+            {loading ? "Submitting..." : "Submit Incident"}
+          </Button>
+        </Box>
+      </Paper>
+    </Container>
+  );
+};
+
+export default ReportIncidentPage;

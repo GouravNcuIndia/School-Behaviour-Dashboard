@@ -27,7 +27,7 @@ export default function AppLayout({ children }: Props) {
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           marginLeft: { xs: 0, sm: `${drawerWidth}px` },
-          marginTop: "64px",
+          marginTop: "60px",
           bgcolor: "background.default",
           minHeight: "100vh",
         }}

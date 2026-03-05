@@ -1,5 +1,40 @@
-import React from "react";
-import { Container, Typography, Paper, Box } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Switch,
+  FormControlLabel,
+  Paper,
+  Alert,
+  Chip,
+  Stack,
+} from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { supabase } from "../../../lib/supabase";
+
+// ----------------------------------------------------------------------
+// Constants
+// ----------------------------------------------------------------------
+
+// ----------------------------------------------------------------------
+// Avalaible Analytics
+// ----------------------------------------------------------------------
+const Analytics_Avalaible_Analytics = [
+  "Global Incident Report",
+  "Intervention Report",
+  "Involvement Report",
+  "Injuries Report",
+  "Log Report",
+  "Clicker Report",
+  "Discriminatory and prejudiced behaviour. Suspensions and exclusions",
+];
+
+// ----------------------------------------------------------------------
+// Custom Theme (matches your index.css)
+// ----------------------------------------------------------------------
 
 const AnalyticsPage: React.FC = () => {
   return (

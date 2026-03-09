@@ -1,0 +1,122 @@
+src/
+│
+├── app/
+│   ├── App.tsx
+│   ├── providers.tsx
+│   ├── theme.ts
+│   └── layout/
+│       ├── Sidebar.tsx
+│       ├── Topbar.tsx
+│       └── AppLayout.tsx
+│
+├── routes/
+│   └── index.tsx
+│
+├── features/
+│
+│   ├── dashboard/
+│   │   ├── components/
+│   │   │     ├── StatsCards.tsx
+│   │   │     ├── RecentIncidents.tsx
+│   │   │     └── RiskOverview.tsx
+│   │   ├── pages/
+│   │   │     └── DashboardPage.tsx
+│   │   └── index.ts
+│   │
+│   ├── reporting/                    ← Teacher reporting page
+│   │   ├── api/
+│   │   │     └── createIncident.ts
+│   │   ├── components/
+│   │   │     ├── IncidentForm.tsx
+│   │   │     ├── InjurySelector.tsx
+│   │   │     ├── StudentSelector.tsx
+│   │   │     └── ActionSection.tsx
+│   │   ├── hooks/
+│   │   │     └── useCreateIncident.ts
+│   │   ├── pages/
+│   │   │     └── ReportIncidentPage.tsx
+│   │   └── types.ts
+│   │
+│   ├── incidents/                    ← Incident management list
+│   │   ├── api/
+│   │   │     ├── fetchIncidents.ts
+│   │   │     └── updateIncident.ts
+│   │   ├── components/
+│   │   │     ├── IncidentTable.tsx
+│   │   │     ├── IncidentFilters.tsx
+│   │   │     └── IncidentDetailsDrawer.tsx
+│   │   ├── pages/
+│   │   │     └── IncidentsPage.tsx
+│   │   └── types.ts
+│   │
+│   ├── ai-insights/
+│   │   ├── api/
+│   │   │     └── fetchInsights.ts
+│   │   ├── components/
+│   │   │     ├── RiskScoreCard.tsx
+│   │   │     ├── BehaviourTrendChart.tsx
+│   │   │     └── RecommendationPanel.tsx
+│   │   ├── pages/
+│   │   │     └── AIInsightsPage.tsx
+│   │   └── types.ts
+│   │
+│   ├── auditing/
+│   │   ├── api/
+│   │   │     └── fetchAuditLogs.ts
+│   │   ├── components/
+│   │   │     ├── AuditTable.tsx
+│   │   │     └── AuditFilters.tsx
+│   │   ├── pages/
+│   │   │     └── AuditPage.tsx
+│   │   └── types.ts
+│   │
+│   ├── analytics/
+│   │   ├── api/
+│   │   │     └── fetchAnalytics.ts
+│   │   ├── components/
+│   │   │     ├── IncidentTrendChart.tsx
+│   │   │     ├── GPAIncidentCorrelation.tsx
+│   │   │     └── HeatmapLocationChart.tsx
+│   │   ├── pages/
+│   │   │     └── AnalyticsPage.tsx
+│   │   └── types.ts
+│   │
+│   ├── users/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── types.ts
+│   │
+│   └── auth/
+│       ├── components/
+│       ├── hooks/
+│       └── pages/
+│
+├── shared/
+│   ├── components/
+│   │   ├── DataTable.tsx
+│   │   ├── Loader.tsx
+│   │   ├── ConfirmDialog.tsx
+│   │   └── Modal.tsx
+│   │
+│   ├── ui/                    ← UI wrappers (MUI abstractions)
+│   └── constants/
+│
+├── lib/
+│   ├── supabase.ts
+│   ├── queryClient.ts
+│   ├── config.ts
+│   └── roles.ts
+│
+├── hooks/
+│   ├── useAuth.ts
+│   ├── usePermissions.ts
+│   └── useDebounce.ts
+│
+├── types/
+│   ├── common.ts
+│   └── api.ts
+│
+└── styles/
+    ├── globals.css
+    └── theme.ts

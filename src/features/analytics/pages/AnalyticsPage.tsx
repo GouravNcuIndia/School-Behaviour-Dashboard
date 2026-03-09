@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Typography,
-  Button,
-  Paper,
-  Grid,
-} from "@mui/material";
+import { Container, Typography, Button, Paper } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 // ----------------------------------------------------------------------

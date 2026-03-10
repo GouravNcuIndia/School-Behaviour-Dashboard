@@ -13,8 +13,9 @@ import {
   Stack,
 } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { supabase } from "../../../lib/supabase";
+import { useCreateIncident } from "../hooks/useCreateIncident";
 
+const { submitIncident, loading, error } = useCreateIncident();
 // ----------------------------------------------------------------------
 // Constants
 // ----------------------------------------------------------------------
@@ -207,7 +208,14 @@ const ReportIncidentPage: React.FC = () => {
     setError(null);
     setSuccess(false);
 
-    const { error } = await supabase.from("incident_table").insert([formData]);
+    const handleSubmit = async () => {
+      try {
+        await submitIncident(formData);
+        setSuccess(true);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
     if (error) {
       setError(error.message);

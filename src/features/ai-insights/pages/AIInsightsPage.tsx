@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Container, Box, Typography, Button, Paper } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Container, Typography, Paper } from "@mui/material";
 
 import { AIInsightsPage1 } from "./AIInsightsPage1";
 import { AIInsightsIncidentPage } from "./AIInsightsIncidentPage";

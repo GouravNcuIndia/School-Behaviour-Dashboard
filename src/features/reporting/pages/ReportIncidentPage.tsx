@@ -15,7 +15,6 @@ import {
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useCreateIncident } from "../hooks/useCreateIncident";
 
-const { submitIncident, loading, error } = useCreateIncident();
 // ----------------------------------------------------------------------
 // Constants
 // ----------------------------------------------------------------------
@@ -57,7 +56,6 @@ const LOCATIONS = [
   "Art Room",
   "Classroom",
 ];
-
 // ----------------------------------------------------------------------
 // Custom Theme (matches your index.css)
 // ----------------------------------------------------------------------
@@ -148,15 +146,12 @@ const theme = createTheme({
     },
   },
 });
-
 // ----------------------------------------------------------------------
 // Component
 // ----------------------------------------------------------------------
 const ReportIncidentPage: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { submitIncident, loading, error } = useCreateIncident();
   const [success, setSuccess] = useState(false);
-
   const [formData, setFormData] = useState<any>({
     incident_student: "",
     incident_type: "",
@@ -204,8 +199,6 @@ const ReportIncidentPage: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    setLoading(true);
-    setError(null);
     setSuccess(false);
 
     const handleSubmit = async () => {
@@ -216,28 +209,6 @@ const ReportIncidentPage: React.FC = () => {
         console.error(err);
       }
     };
-
-    if (error) {
-      setError(error.message);
-    } else {
-      setSuccess(true);
-      setFormData({
-        ...formData,
-        incident_student: "",
-        incident_type: "",
-        incident_clicker: "",
-        incident_date: "",
-        incident_time: "",
-        incident_location: "",
-        incident_witnesses: "",
-        students_involved: "",
-        staff_involved: "",
-        report_completer: "",
-        incident_description: "",
-      });
-    }
-
-    setLoading(false);
   };
 
   return (
